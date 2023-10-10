@@ -11,6 +11,10 @@ public class Main {
         PessoaFisica metodosPf = new PessoaFisica();
 
 
+        ArrayList<PessoaJuridica> listaPj = new ArrayList<PessoaJuridica>();
+        PessoaJuridica metodosPj = new PessoaJuridica();
+
+
         System.out.println("Bem Vindo ao Sistema de Cadastro de Pessoa Fisica e Pessoa Juridica");
 
         Scanner scanner = new Scanner(System.in);
@@ -121,9 +125,94 @@ public class Main {
 
                     break;
 
-                case 2:
 
-                    break;
+                case 2:
+                    int opcaoPj;
+                    do {
+
+                        System.out.println(" Pessoa Juridica / 0 - Sair");
+                        opcaoPj = scanner.nextInt();
+//
+//                        switch (opcaoPj) {
+//
+//                            case 2:
+//                                switch (opcaoJuridica) {
+
+                                    case 1:
+                                        PessoaJuridica novapJ = new PessoaJuridica();
+                                        Endereco novoEndPJ = new Endereco();
+
+
+                                        System.out.println("Digite o nome da pessoa juridica: ");
+                                        novapJ.nome = scanner.next();
+
+                                        System.out.println("Digite o CNPJ: ");
+                                        novapJ.cnpj = scanner.next();
+
+                                        System.out.println("Digite o rendimento mensal (Digite Somente numero): ");
+                                        novapJ.rendimento = scanner.nextInt();
+
+                                        System.out.println("Digite o Logradouro: ");
+                                        novoEndPJ.logradouro = scanner.next();
+
+                                        System.out.println("Digite o número");
+                                        novoEndPJ.numero = scanner.next();
+
+                                        System.out.println("Este endereço é comercial? S/N: ");
+                                        String endCom;
+                                        endCom = scanner.next();
+
+                                        if (endCom.equalsIgnoreCase("S")) {
+                                            novoEndPJ.enderecoComercial = true;
+                                        } else {
+                                            novoEndPJ.enderecoComercial = false;
+                                        }
+
+
+                                        novapJ.endereco = novoEndPJ;
+
+                                        listaPJ.add(novapJ);
+
+                                        System.out.println("Cadastro realizado com sucesso!");
+
+                                        break;
+
+                                    case 2:
+
+                                        if (listaPJ.size()> 0){
+
+                                            for (PessoaJuridica cadaPJ: listaPj) {
+                                                System.out.println();
+                                                System.out.println("Nome" + cadaPJ.nome);
+                                                System.out.println("CNPJ" + cadaPJ.cnpj);
+                                                System.out.println("Endereço" + cadaPJ.endereco.logradouro + "," + cadaPJ.endereco.numero);
+                                                System.out.println("Imposto a ser pago" + metodosPj.CalcularImposto(cadaPJ.rendimento));
+                                                System.out.println();
+                                                System.out.println("Digite ) para continuar");
+                                                scanner.nextInt();
+
+                                                opcaoPj = scanner.nextInt();
+
+                                            }
+                                        }else {
+                                            System.out.println("Lista vazia");
+                                        }
+
+                                        break;
+
+
+                                    case 0:
+                                        System.out.println("Voltando ao menu anterior");
+                                        break;
+                                    default:
+                                        System.out.println("opcao invalida");
+                                        break;
+
+                                }
+
+                        } while (opcaoPj != 0);
+
+                        break;
 
                 case 0:
                     System.out.println("Obrigado por utilizar o nosso sistema! Forte Abraço! ");
